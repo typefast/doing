@@ -6,7 +6,24 @@ class ToDo
     @tasks = []
   end
   
-  
+  def run
+    while true
+    puts "what do you want to do?"
+    puts "1. add task"
+    puts "2. show tasks"
+    action = gets.chomp.downcase
+    
+    case action
+    when "1"
+      add_tasks
+    when "2"
+      puts "List of Tasks"
+      list_tasks
+    else
+      puts "Enter a number."
+    end
+    end
+  end
   
   def add_tasks
     puts "Add task"
@@ -22,10 +39,9 @@ class ToDo
     tasks.each do |item|
       puts "Title: #{item.title} Description: #{item.description}"
     end
+    puts "\n\n"
   end
 end
 
 todo = ToDo.new
-todo.add_tasks
-todo.add_tasks
-todo.list_tasks
+todo.run
