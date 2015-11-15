@@ -6,6 +6,8 @@ class ToDo
     @tasks = []
   end
   
+  
+  
   def add_tasks
     puts "Add task"
     puts "Enter a title: "
@@ -17,7 +19,9 @@ class ToDo
   end
   
   def list_tasks
-    p tasks
+    tasks.each do |item|
+      puts "Title: #{item.title} Description: #{item.description}"
+    end
   end
 end
 
