@@ -2,6 +2,12 @@
 - !ruby/object:Task
   title: one
   description: hjhj
+  completed: 'Yes'
 - !ruby/object:Task
-  title: two
-  description: jojjk
+  title: three
+  description: hjkhj
+  completed: 'No'
+- !ruby/object:Task
+  title: four
+  description: hjfkvfhjk
+  completed: 'Yes'

@@ -27,6 +27,7 @@ class ToDo
     puts "2. Show tasks"
     puts "3. Exit"
     puts "4. Delete a task"
+    puts "5. Mark a task completed"
     action = gets.chomp.downcase
     
     case action
@@ -40,8 +41,11 @@ class ToDo
       save()
       exit(0)
     when "4"
-      puts "Delete a task"
+      puts "Delete a Task"
       delete()
+    when "5"
+      puts "Mark a Task Completed"
+      done()
     else
       puts "Enter a number."
     end
@@ -58,6 +62,18 @@ class ToDo
     tasks.push(task)
   end
   
+  def done
+    puts "Enter title of task to mark done: "
+    title = gets.chomp.downcase
+    
+    tasks.each do |task|
+      if task.title == title
+        puts "#{task.title} is marked completed."
+        task.completed = "Yes"
+      end
+    end
+  end
+  
   def delete
     puts "Enter a title of a task: "
     title = gets.chomp.downcase
@@ -68,14 +84,13 @@ class ToDo
         tasks.delete(task)
       end
     end
-    
   end
   
   def list_tasks
-    puts "Title".ljust(20) + "Description".ljust(20)
-    puts "-" * 40
+    puts "Title".ljust(20) + "Description".ljust(20) + "Completed?".ljust(20)
+    puts "-" * 50
     tasks.each do |task|
-      puts "#{task.title}".ljust(20) + "#{task.description}".ljust(20)
+      puts "#{task.title}".ljust(20) + "#{task.description}".ljust(20) + "#{task.completed}".ljust(20)
     end
     puts "\n\n"
   end
