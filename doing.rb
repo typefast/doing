@@ -55,8 +55,10 @@ class ToDo
   end
   
   def list_tasks
+    puts "Title".ljust(20) + "Description".ljust(20)
+    puts "-" * 40
     tasks.each do |task|
-      puts "Title: #{task.title} Description: #{task.description}"
+      puts "#{task.title}".ljust(20) + "#{task.description}".ljust(20)
     end
     puts "\n\n"
   end
