@@ -1,16 +1,31 @@
 require './task.rb'
+require 'yaml'
 class ToDo
   attr_accessor :tasks
   
   def initialize()
     @tasks = []
+    load()
+  end
+  
+  def load
+    if File.exists?("tasks.yml")
+      @tasks = YAML.load_file("tasks.yml")
+    end
+  end
+  
+  def save
+    File.open("tasks.yml", "w") do |file|
+      file.write(tasks.to_yaml)
+    end
   end
   
   def run
     while true
     puts "what do you want to do?"
-    puts "1. add task"
-    puts "2. show tasks"
+    puts "1. Add task"
+    puts "2. Show tasks"
+    puts "3. Exit"
     action = gets.chomp.downcase
     
     case action
@@ -19,6 +34,10 @@ class ToDo
     when "2"
       puts "List of Tasks"
       list_tasks
+    when "3"
+      puts "Thanks, Goodbye"
+      save()
+      exit(0)
     else
       puts "Enter a number."
     end
@@ -36,8 +55,8 @@ class ToDo
   end
   
   def list_tasks
-    tasks.each do |item|
-      puts "Title: #{item.title} Description: #{item.description}"
+    tasks.each do |task|
+      puts "Title: #{task.title} Description: #{task.description}"
     end
     puts "\n\n"
   end
