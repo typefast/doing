@@ -26,6 +26,7 @@ class ToDo
     puts "1. Add task"
     puts "2. Show tasks"
     puts "3. Exit"
+    puts "4. Delete a task"
     action = gets.chomp.downcase
     
     case action
@@ -38,6 +39,9 @@ class ToDo
       puts "Thanks, Goodbye"
       save()
       exit(0)
+    when "4"
+      puts "Delete a task"
+      delete()
     else
       puts "Enter a number."
     end
@@ -50,8 +54,21 @@ class ToDo
     title = gets.chomp.downcase
     puts "Enter a description: "
     desc = gets.chomp.downcase
-    task= Task.new(title, desc)
+    task = Task.new(title, desc)
     tasks.push(task)
+  end
+  
+  def delete
+    puts "Enter a title of a task: "
+    title = gets.chomp.downcase
+    
+    tasks.each do |task|
+      if task.title == title
+        puts "The task #{task.title} was deleted."
+        tasks.delete(task)
+      end
+    end
+    
   end
   
   def list_tasks
